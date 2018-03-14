@@ -98,9 +98,28 @@ public class Main {
         System.out.println("The formatted date is " + formattedDate(hundredRandomDates.get(sc.nextInt())));
         //I had completely forgotten to submit the previous story, so if it looks like I completed this story incredibly quickly, it's because I temporarily removed this code so I could post the for the previous story.
 
-        //TODO Define and use a DayOfWeek enumerated type.
+        // Define and use a DayOfWeek enumerated type.
+        dayOfWeekEnumerated();
         //TODO Define and use a Course enumerated type.
         //TODO Define and use a Category enumerated type.
+    }
+
+    public enum Day {
+        SUNDAY, MONDAY, TUESDAY, WEDNESDAY,
+        THURSDAY, FRIDAY, SATURDAY
+    }
+
+    private static ArrayList<Day> dayOfWeekEnumerated() {
+        ArrayList<Day> daysOfWeek = new ArrayList<>();
+        daysOfWeek.add(Day.SUNDAY);
+        daysOfWeek.add(Day.MONDAY);
+        daysOfWeek.add(Day.TUESDAY);
+        daysOfWeek.add(Day.WEDNESDAY);
+        daysOfWeek.add(Day.THURSDAY);
+        daysOfWeek.add(Day.FRIDAY);
+        daysOfWeek.add(Day.SATURDAY);
+
+        return daysOfWeek;
     }
 
     private static String formattedDate(LocalDateTime date) {
