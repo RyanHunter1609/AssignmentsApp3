@@ -102,11 +102,23 @@ public class Main {
         dayOfWeekEnumerated();
         // Define and use a Course enumerated type.
         courseEnumerated();
-        //TODO Define and use a Category enumerated type.
+        // Define and use a Category enumerated type.
+        categoryEnumerated();
+
+    }
+
+    private static ArrayList<Category> categoryEnumerated() {
+        ArrayList<Category> categories = new ArrayList<>();
+        Collections.addAll(categories, Category.values());
+        return categories;
+    }
+
+    public enum Category {
+        HOMEWORK, QUIZ, TEST, PRESENTATION, FINAL_EXAM
     }
 
     public enum Course {
-        SPANISH, ENGLISH, MATH, ART, SCIENCE
+        SPANISH, ENGLISH, MATH, ART, COMPUTER_SCIENCE
     }
 
     private static ArrayList<Course> courseEnumerated() {
