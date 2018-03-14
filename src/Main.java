@@ -101,6 +101,7 @@ public class Main {
         // Define and use a DayOfWeek enumerated type.
         dayOfWeekEnumerated();
         //TODO Define and use a Course enumerated type.
+
         //TODO Define and use a Category enumerated type.
     }
 
@@ -111,14 +112,7 @@ public class Main {
 
     private static ArrayList<Day> dayOfWeekEnumerated() {
         ArrayList<Day> daysOfWeek = new ArrayList<>();
-        daysOfWeek.add(Day.SUNDAY);
-        daysOfWeek.add(Day.MONDAY);
-        daysOfWeek.add(Day.TUESDAY);
-        daysOfWeek.add(Day.WEDNESDAY);
-        daysOfWeek.add(Day.THURSDAY);
-        daysOfWeek.add(Day.FRIDAY);
-        daysOfWeek.add(Day.SATURDAY);
-
+        Collections.addAll(daysOfWeek, Day.values());
         return daysOfWeek;
     }
 
