@@ -27,6 +27,10 @@ public class Assignment {
         this.priority = priority;
     }
 
+    public Assignment(Assignment assignment) {
+
+    }
+
     public Main.Category getCategory() {
         return category;
     }

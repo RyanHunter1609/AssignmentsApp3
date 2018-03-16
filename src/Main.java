@@ -118,20 +118,35 @@ public class Main {
         System.out.println("Assignment 2: " + assign2);
 
         // Copy assign1 to assign3.
-        Assignment assignment = copyAssign1ToAssign3(assign1);
-        System.out.println("Assignment 3: " + assignment);
+        Assignment assignment3 = copyAssign1ToAssign3(assign1);
+        System.out.println("Assignment 3: " + assignment3);
 
         // Override .compareTo() method
+        String assignCompared = assignmentComparison(assign1, assign2);
         System.out.println("Assignment One: " + assign1 + " Compared To Two: " + assign2 +
-                "\n Assignments Compared: " + assignment);
+                "\n Assignments Compared: " + assignCompared);
 
 
-        //TODO Which of assign1, assign2, or assign3 is the earliest?
+        // Which of assign1, assign2, or assign3 is the earliest?
+        System.out.print(whichAssignmentIsEarliest(assign1, assign2, assignment3));
 
     }
 
+    private static String whichAssignmentIsEarliest(Assignment assign1, Assignment assign2, Assignment assign3) {
+        String earliest;
+        if (assign1.getDay().isBefore(assign2.getDay()) && assign1.getDay().isBefore(assign3.getDay())) {
+            earliest = "Assignment 1 is Earliest: " + assign1;
+        } else if (assign2.getDay().isBefore(assign1.getDay()) && assign2.getDay().isBefore(assign3.getDay())) {
+            earliest = "Assignment 2 is Earliest: " + assign2;
+
+        } else {
+            earliest = "Assignment 3 is Earliest: " + assign2;
+        }
+        return earliest;
+    }
+
     // Override an Assignment.compareTo() method then use it to output BEFORE, EQUALS, or AFTER based on the LocalDateTime.
-    public String assignmentComparison(Assignment assign1, Assignment assign2) {
+    public static String assignmentComparison(Assignment assign1, Assignment assign2) {
         int value = assign1.compareTo(assign2);
         if (value < 0) {
             return "BEFORE";
@@ -172,7 +187,17 @@ public class Main {
 
     public enum Day {
         SUNDAY, MONDAY, TUESDAY, WEDNESDAY,
-        THURSDAY, FRIDAY, SATURDAY
+        THURSDAY, FRIDAY, SATURDAY;
+
+        private boolean before;
+
+        public boolean isBefore() {
+            return before;
+        }
+
+        public boolean isBefore(Day day) {
+            return false;
+        }
     }
 
     private static ArrayList<Day> dayOfWeekEnumerated() {
