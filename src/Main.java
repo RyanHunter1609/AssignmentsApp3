@@ -9,6 +9,12 @@ public class Main {
     static Random rand = new Random();
     static Scanner sc = new Scanner(System.in);
 
+    // Override an Assignment.equals() method.
+    @Override
+    public boolean equals(Object obj) {
+        return super.equals(obj);
+    }
+
     public static void main(String[] args) {
         System.out.println("\n\nHello, AssignmentsApp!\n");
 
@@ -112,7 +118,7 @@ public class Main {
         // Copy assign1 to assign3.
         Assignment assignment = copyAssign1ToAssign3(assign1);
         System.out.println("Assignment 3: " + assignment);
-        //TODO Override an Assignment.equals() method.
+
         //TODO Override an Assignment.compareTo() method then use it to output BEFORE, EQUALS, or AFTER based on the LocalDateTime.
         //TODO Which of assign1, assign2, or assign3 is the earliest?
 
@@ -120,7 +126,9 @@ public class Main {
 
     public static Assignment copyAssign1ToAssign3(Assignment assign1) {
         //creates a new local Assignment object and assigns each individual instance variable to that local variable.
-        Assignment assign3 = assign1;
+        Assignment assign3 = new Assignment();
+        //copy assign1 >>>> .equals()
+        assign3.equals(assign1);
         return assign3;
     }
 
