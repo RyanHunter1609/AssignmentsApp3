@@ -3,7 +3,7 @@ import java.time.LocalDateTime;
 import java.util.Random;
 
 public class Assignment {
-    Random rand;
+    Random rand = new Random();
     private Main.Category category;
     private Main.Course course;
     private Main.Day day;
@@ -70,5 +70,10 @@ public class Assignment {
     @Override
     public String toString() {
         return category + "\n" + course + "\n" + day + "\n" + localDateTime + "\n" + priority;
+    }
+
+
+    public int compareTo(Assignment assign2) {
+        return 0;
     }
 }

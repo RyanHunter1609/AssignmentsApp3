@@ -1,3 +1,5 @@
+import javafx.scene.layout.Priority;
+
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoUnit;
@@ -119,9 +121,25 @@ public class Main {
         Assignment assignment = copyAssign1ToAssign3(assign1);
         System.out.println("Assignment 3: " + assignment);
 
-        //TODO Override an Assignment.compareTo() method then use it to output BEFORE, EQUALS, or AFTER based on the LocalDateTime.
+        // Override .compareTo() method
+        System.out.println("Assignment One: " + assign1 + " Compared To Two: " + assign2 +
+                "\n Assignments Compared: " + assignment);
+
+
         //TODO Which of assign1, assign2, or assign3 is the earliest?
 
+    }
+
+    // Override an Assignment.compareTo() method then use it to output BEFORE, EQUALS, or AFTER based on the LocalDateTime.
+    public String assignmentComparison(Assignment assign1, Assignment assign2) {
+        int value = assign1.compareTo(assign2);
+        if (value < 0) {
+            return "BEFORE";
+        } else if (value > 0) {
+            return "AFTER";
+        } else {
+            return "EQUALS";
+        }
     }
 
     public static Assignment copyAssign1ToAssign3(Assignment assign1) {
