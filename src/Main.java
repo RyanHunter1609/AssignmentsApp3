@@ -107,9 +107,11 @@ public class Main {
         // Define and use a Category enumerated type.
         categoryEnumerated();
 
-        //TODO In the driver, generate 2 random assignments named assign1 and assign2.
+        // In the driver, generate 2 random assignments named assign1 and assign2.
         Assignment assign1 = new Assignment();  // the instance variables are set by the programmer in the default constructor
+        System.out.println("Assignment 1: " + assign1);
         Assignment assign2 = new Assignment(Category.HOMEWORK, Course.SPANISH, Day.SUNDAY, LocalDateTime.now(), 2); // the instance variables are set in the driver by the user.
+        System.out.println("Assignment 1: " + assign2);
 
         //TODO Copy assign1 to assign3.
         //TODO Override an Assignment.equals() method.
