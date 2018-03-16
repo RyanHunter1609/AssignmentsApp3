@@ -1,8 +1,4 @@
-import javafx.scene.layout.Priority;
-
-import javax.swing.text.DateFormatter;
 import java.time.LocalDateTime;
-import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoUnit;
 import java.util.*;
@@ -110,12 +106,22 @@ public class Main {
         // In the driver, generate 2 random assignments named assign1 and assign2.
         Assignment assign1 = new Assignment();  // the instance variables are set by the programmer in the default constructor
         System.out.println("Assignment 1: " + assign1);
-        Assignment assign2 = new Assignment(Category.HOMEWORK, Course.SPANISH, Day.SUNDAY, LocalDateTime.now(), 2); // the instance variables are set in the driver by the user.
-        System.out.println("Assignment 1: " + assign2);
+        Assignment assign2 = new Assignment(Category.HOMEWORK, Course.SPANISH, Day.SUNDAY, LocalDateTime.now(), 1); // the instance variables are set in the driver by the user.
+        System.out.println("Assignment 2: " + assign2);
 
-        //TODO Copy assign1 to assign3.
+        // Copy assign1 to assign3.
+        Assignment assignment = copyAssign1ToAssign3(assign1);
+        System.out.println("Assignment 3: " + assignment);
         //TODO Override an Assignment.equals() method.
+        //TODO Override an Assignment.compareTo() method then use it to output BEFORE, EQUALS, or AFTER based on the LocalDateTime.
+        //TODO Which of assign1, assign2, or assign3 is the earliest?
 
+    }
+
+    public static Assignment copyAssign1ToAssign3(Assignment assign1) {
+        //creates a new local Assignment object and assigns each individual instance variable to that local variable.
+        Assignment assign3 = assign1;
+        return assign3;
     }
 
     private static ArrayList<Category> categoryEnumerated() {
