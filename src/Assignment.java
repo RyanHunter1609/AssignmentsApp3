@@ -1,88 +1,54 @@
 import javafx.scene.layout.Priority;
 
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.Collections;
 import java.util.Random;
 
 public class Assignment {
-    Random random = new Random();
-    private Category category;
-    private Course course;
-    private Day day;
+    Random rand;
+    private Main.Category category;
+    private Main.Course course;
+    private Main.Day day;
     private LocalDateTime localDateTime;
-    private Priority priority;
+    private int priority;
 
-    public Assignment(Category category, Course course, Day day, LocalDateTime localDateTime, Priority priority) {
+    public Assignment() {
+        //a default constructor that creates an object called assign1
+        category = Main.Category.HOMEWORK;
+        course = Main.Course.SPANISH;
+        day = Main.Day.SUNDAY;
+        localDateTime = LocalDateTime.now();
+        priority = rand.nextInt(4);
+    }
+
+    public Assignment(Main.Category category, Main.Course course, Main.Day day, LocalDateTime localDateTime, int priority) {
         this.category = category;
         this.course = course;
+        this.day = day;
         this.localDateTime = localDateTime;
         this.priority = priority;
-        this.day = day;
     }
 
-    private static ArrayList<Category> categoryEnumerated() {
-        ArrayList<Category> categories = new ArrayList<>();
-        Collections.addAll(categories, Category.values());
-        return categories;
-    }
-
-    public enum Category {
-        HOMEWORK, QUIZ, TEST, PRESENTATION, FINAL_EXAM
-    }
-
-    public enum Course {
-        SPANISH, ENGLISH, MATH, ART, COMPUTER_SCIENCE
-    }
-
-    private static ArrayList<Course> courseEnumerated() {
-        ArrayList<Course> courses = new ArrayList<>();
-        Collections.addAll(courses, Course.values());
-        return courses;
-    }
-
-    public enum Day {
-        SUNDAY, MONDAY, TUESDAY, WEDNESDAY,
-        THURSDAY, FRIDAY, SATURDAY
-    }
-
-    private static ArrayList<Day> dayOfWeekEnumerated() {
-        ArrayList<Day> daysOfWeek = new ArrayList<>();
-        Collections.addAll(daysOfWeek, Day.values());
-        return daysOfWeek;
-    }
-
-
-    public static Assignment generateAssignment() {
-        LocalDateTime localDateTimeArrayList = LocalDateTime.now();
-        ArrayList<Day> dayArrayList = dayOfWeekEnumerated();
-        ArrayList<Category> categoryArrayList = categoryEnumerated();
-        ArrayList<Course> courseArrayList = courseEnumerated();
-        localDateTimeArrayList;
-        return null;
-    }
-
-    public Category getCategory() {
+    public Main.Category getCategory() {
         return category;
     }
 
-    public void setCategory(Category category) {
+    public void setCategory(Main.Category category) {
         this.category = category;
     }
 
-    public Course getCourse() {
+    public Main.Course getCourse() {
         return course;
     }
 
-    public void setCourse(Course course) {
+    public void setCourse(Main.Course course) {
         this.course = course;
     }
 
-    public Day getDay() {
+    public Main.Day getDay() {
         return day;
     }
 
-    public void setDay(Day day) {
+    public void setDay(Main.Day day) {
         this.day = day;
     }
 
@@ -94,11 +60,11 @@ public class Assignment {
         this.localDateTime = localDateTime;
     }
 
-    public Priority getPriority() {
+    public int getPriority() {
         return priority;
     }
 
-    public void setPriority(Priority priority) {
+    public void setPriority(int priority) {
         this.priority = priority;
     }
 

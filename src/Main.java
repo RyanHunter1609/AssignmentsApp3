@@ -108,16 +108,44 @@ public class Main {
         categoryEnumerated();
 
         //TODO In the driver, generate 2 random assignments named assign1 and assign2.
-        Assignment assign1 = generateAssignment();
-
-        Assignment priority = new Assignment(rand.nextInt(4));
-        Assignment priority2 = new Assignment(rand.nextInt(4));
+        Assignment assign1 = new Assignment();  // the instance variables are set by the programmer in the default constructor
+        Assignment assign2 = new Assignment(Category.HOMEWORK, Course.SPANISH, Day.SUNDAY, LocalDateTime.now(), 2); // the instance variables are set in the driver by the user.
 
         //TODO Copy assign1 to assign3.
         //TODO Override an Assignment.equals() method.
 
     }
 
+    private static ArrayList<Category> categoryEnumerated() {
+        ArrayList<Category> categories = new ArrayList<>();
+        Collections.addAll(categories, Category.values());
+        return categories;
+    }
+
+    public enum Category {
+        HOMEWORK, QUIZ, TEST, PRESENTATION, FINAL_EXAM
+    }
+
+    public enum Course {
+        SPANISH, ENGLISH, MATH, ART, COMPUTER_SCIENCE
+    }
+
+    private static ArrayList<Course> courseEnumerated() {
+        ArrayList<Course> courses = new ArrayList<>();
+        Collections.addAll(courses, Course.values());
+        return courses;
+    }
+
+    public enum Day {
+        SUNDAY, MONDAY, TUESDAY, WEDNESDAY,
+        THURSDAY, FRIDAY, SATURDAY
+    }
+
+    private static ArrayList<Day> dayOfWeekEnumerated() {
+        ArrayList<Day> daysOfWeek = new ArrayList<>();
+        Collections.addAll(daysOfWeek, Day.values());
+        return daysOfWeek;
+    }
 
     private static String formattedDate(LocalDateTime date) {
         String newDate = "";
