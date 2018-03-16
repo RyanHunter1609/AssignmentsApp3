@@ -1,3 +1,5 @@
+import javafx.scene.layout.Priority;
+
 import javax.swing.text.DateFormatter;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
@@ -105,38 +107,17 @@ public class Main {
         // Define and use a Category enumerated type.
         categoryEnumerated();
 
+        //TODO In the driver, generate 2 random assignments named assign1 and assign2.
+        Assignment assign1 = generateAssignment();
+
+        Assignment priority = new Assignment(rand.nextInt(4));
+        Assignment priority2 = new Assignment(rand.nextInt(4));
+
+        //TODO Copy assign1 to assign3.
+        //TODO Override an Assignment.equals() method.
+
     }
 
-    private static ArrayList<Category> categoryEnumerated() {
-        ArrayList<Category> categories = new ArrayList<>();
-        Collections.addAll(categories, Category.values());
-        return categories;
-    }
-
-    public enum Category {
-        HOMEWORK, QUIZ, TEST, PRESENTATION, FINAL_EXAM
-    }
-
-    public enum Course {
-        SPANISH, ENGLISH, MATH, ART, COMPUTER_SCIENCE
-    }
-
-    private static ArrayList<Course> courseEnumerated() {
-        ArrayList<Course> courses = new ArrayList<>();
-        Collections.addAll(courses, Course.values());
-        return courses;
-    }
-
-    public enum Day {
-        SUNDAY, MONDAY, TUESDAY, WEDNESDAY,
-        THURSDAY, FRIDAY, SATURDAY
-    }
-
-    private static ArrayList<Day> dayOfWeekEnumerated() {
-        ArrayList<Day> daysOfWeek = new ArrayList<>();
-        Collections.addAll(daysOfWeek, Day.values());
-        return daysOfWeek;
-    }
 
     private static String formattedDate(LocalDateTime date) {
         String newDate = "";
