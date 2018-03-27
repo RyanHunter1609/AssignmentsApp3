@@ -132,7 +132,13 @@ public class Main {
         //TODO Write  [X] randomly generated assignments to the file 'input.dat'.
         writeRandomAssignments();
         readRandomAssignments();
+
+        LocalDateTime randomLocalDateTime = LocalDateTime.of(2018, 6, 2, 6, 7);
+        int priority = rand.nextInt();
+        Assignment randomAssign = new Assignment(randomLocalDateTime, priority);
+        System.out.println("RYAN" + randomAssign);
     }
+
 
     private static void readRandomAssignments() throws IOException {
         DataInputStream input = new DataInputStream(new FileInputStream("assignments.dat"));
@@ -144,15 +150,19 @@ public class Main {
     }
 
     private static void writeRandomAssignments() throws IOException {
-        DataOutputStream output = new DataOutputStream(new FileOutputStream("assignments.dat"));
-        Random random = new Random();
+        DataOutputStream outFile = new DataOutputStream(new FileOutputStream("assignments.dat"));
+        try (PrintWriter pw = new PrintWriter(outFile)) {
+            //initialize random generator
+            Random random = new Random();
 
-        for (int i = 0; i < 10; i++) {
+            for (int i = 0; i < 10; i++) {
 
-            output.writeInt(i);
-            System.out.println(i);
+                outFile.writeInt(i);
+                System.out.println(i);
+            }
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
         }
-        output.close();
     }
 
     private static String whichAssignmentIsEarliest(Assignment assign1, Assignment assign2, Assignment assign3) {

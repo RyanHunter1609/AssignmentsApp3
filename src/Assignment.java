@@ -27,8 +27,9 @@ public class Assignment {
         this.priority = priority;
     }
 
-    public Assignment(Assignment assignment) {
-
+    public Assignment(LocalDateTime localDateTime, int priority) {
+        this.localDateTime = localDateTime;
+        this.priority = priority;
     }
 
     public Main.Category getCategory() {
