@@ -129,24 +129,36 @@ public class Main {
         // Which of assign1, assign2, or assign3 is the earliest?
         System.out.print(whichAssignmentIsEarliest(assign1, assign2, assignment3));
 
-        //TODO Write  [X] randomly generated assignments to the file 'input.dat'.
+        // Write  [X] randomly generated assignments to the file 'input.dat'.
         writeRandomAssignments();
-        readRandomAssignments();
+        DataInputStream readAssignments = readRandomAssignments();
 
         LocalDateTime randomLocalDateTime = LocalDateTime.of(2018, 6, 2, 6, 7);
         int priority = rand.nextInt();
         Assignment randomAssign = new Assignment(randomLocalDateTime, priority);
         System.out.println("RYAN" + randomAssign);
+
+        // Remove any duplicate assignments.
+        Set<Assignment> removeDuplicates = removeDuplicateAssignments(randomAssign, assign1);
+    }
+
+    private static Set<Assignment> removeDuplicateAssignments(Assignment randomAssign, Assignment assign1) {
+        Set<Assignment> newObjects = new HashSet<>();
+        for (int i = 0; i < newObjects.size(); i++) {
+            newObjects.add(assign1);
+        }
+        return newObjects;
     }
 
 
-    private static void readRandomAssignments() throws IOException {
+    private static DataInputStream readRandomAssignments() throws IOException {
         DataInputStream input = new DataInputStream(new FileInputStream("assignments.dat"));
         while (input.available() > 0) {
             int x = input.readInt();
             System.out.println(x);
         }
         input.close();
+       return input;
     }
 
     private static void writeRandomAssignments() throws IOException {
@@ -156,7 +168,6 @@ public class Main {
             Random random = new Random();
 
             for (int i = 0; i < 10; i++) {
-
                 outFile.writeInt(i);
                 System.out.println(i);
             }
