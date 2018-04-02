@@ -128,20 +128,27 @@ public class Main {
         // Which of assignment1, assignment2, or assign3 is the earliest?
         System.out.print(whichAssignmentIsEarliest(assignment1, assignment2, assignment3));
 
-        //generate random assignment
-        Assignment assignment4 = new Assignment(LocalDateTime.now(), 2);
+
         System.out.println("Enter Amount of Assignment(s) to Generate: ");
-        int userNum = sc.nextInt();
+        int userInputNum = sc.nextInt();
         // Write  [X] randomly generated assignments to the file 'input.dat'.
-        writeRandomAssignments(assignment4, userNum);
+        writeRandomAssignments(userInputNum);
 
     }
 
-    private static void writeRandomAssignments(Assignment assign4, int userInput) throws IOException {
+    private static void writeRandomAssignments(int userInput) throws IOException {
+
         //creates a PrintWriter instance which is connected to a FileWriter.
         PrintWriter printWriter = new PrintWriter("input.dat");
-        //writes a nullable object to the PrintWriter
-        printWriter.print(assign4);
+        for (int i = 0; i < userInput; i++) {
+            //5 = bounds
+            int randomNum = rand.nextInt(5);
+            //generate random assignment
+            Assignment assignment = new Assignment(LocalDateTime.now(), randomNum);
+            //writes a nullable object to the PrintWriter
+            printWriter.print(assignment);
+        }
+
         /**
          * PrintWriter is closed
          * When you are finished writing characters to the Java PrintWriter you should remember to close it.
@@ -286,7 +293,6 @@ public class Main {
         }
         return count;
     }
-
 
     private static ArrayList<LocalDateTime> seekDuplicates(ArrayList<LocalDateTime> userList) {
         ArrayList<LocalDateTime> returnArray = new ArrayList<>();
