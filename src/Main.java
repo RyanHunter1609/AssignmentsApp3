@@ -110,70 +110,44 @@ public class Main {
         // Define and use a Category enumerated type.
         categoryEnumerated();
 
-        // In the driver, generate 2 random assignments named assign1 and assign2.
-        Assignment assign1 = new Assignment();  // the instance variables are set by the programmer in the default constructor
-        System.out.println("Assignment 1: " + assign1);
-        Assignment assign2 = new Assignment(Category.HOMEWORK, Course.SPANISH, Day.SUNDAY, LocalDateTime.now(), 1); // the instance variables are set in the driver by the user.
-        System.out.println("Assignment 2: " + assign2);
+        // In the driver, generate 2 random assignments named assignment1 and assignment2.
+        Assignment assignment1 = new Assignment();  // the instance variables are set by the programmer in the default constructor
+        System.out.println("Assignment 1: " + assignment1);
+        Assignment assignment2 = new Assignment(Category.HOMEWORK, Course.SPANISH, Day.SUNDAY, LocalDateTime.now(), 1); // the instance variables are set in the driver by the user.
+        System.out.println("Assignment 2: " + assignment2);
 
-        // Copy assign1 to assign3.
-        Assignment assignment3 = copyAssign1ToAssign3(assign1);
+        // Copy assignment1 to assign3.
+        Assignment assignment3 = copyAssign1ToAssign3(assignment1);
         System.out.println("Assignment 3: " + assignment3);
 
         // Override .compareTo() method
-        String assignCompared = assignmentComparison(assign1, assign2);
-        System.out.println("Assignment One: " + assign1 + " Compared To Two: " + assign2 +
+        String assignCompared = assignmentComparison(assignment1, assignment2);
+        System.out.println("Assignment One: " + assignment1 + " Compared To Two: " + assignment2 +
                 "\n Assignments Compared: " + assignCompared);
 
+        // Which of assignment1, assignment2, or assign3 is the earliest?
+        System.out.print(whichAssignmentIsEarliest(assignment1, assignment2, assignment3));
 
-        // Which of assign1, assign2, or assign3 is the earliest?
-        System.out.print(whichAssignmentIsEarliest(assign1, assign2, assignment3));
-
+        //generate random assignment
+        Assignment assignment4 = new Assignment(LocalDateTime.now(), 2);
+        System.out.println("Enter Amount of Assignment(s) to Generate: ");
+        int userNum = sc.nextInt();
         // Write  [X] randomly generated assignments to the file 'input.dat'.
-        writeRandomAssignments();
-        DataInputStream readAssignments = readRandomAssignments();
+        writeRandomAssignments(assignment4, userNum);
 
-        LocalDateTime randomLocalDateTime = LocalDateTime.of(2018, 6, 2, 6, 7);
-        int priority = rand.nextInt();
-        Assignment randomAssign = new Assignment(randomLocalDateTime, priority);
-        System.out.println("RYAN" + randomAssign);
-
-        // Remove any duplicate assignments.
-        Set<Assignment> removeDuplicates = removeDuplicateAssignments(randomAssign, assign1);
     }
 
-    private static Set<Assignment> removeDuplicateAssignments(Assignment randomAssign, Assignment assign1) {
-        Set<Assignment> newObjects = new HashSet<>();
-        for (int i = 0; i < newObjects.size(); i++) {
-            newObjects.add(assign1);
-        }
-        return newObjects;
-    }
-
-
-    private static DataInputStream readRandomAssignments() throws IOException {
-        DataInputStream input = new DataInputStream(new FileInputStream("assignments.dat"));
-        while (input.available() > 0) {
-            int x = input.readInt();
-            System.out.println(x);
-        }
-        input.close();
-       return input;
-    }
-
-    private static void writeRandomAssignments() throws IOException {
-        DataOutputStream outFile = new DataOutputStream(new FileOutputStream("assignments.dat"));
-        try (PrintWriter pw = new PrintWriter(outFile)) {
-            //initialize random generator
-            Random random = new Random();
-
-            for (int i = 0; i < 10; i++) {
-                outFile.writeInt(i);
-                System.out.println(i);
-            }
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        }
+    private static void writeRandomAssignments(Assignment assign4, int userInput) throws IOException {
+        //creates a PrintWriter instance which is connected to a FileWriter.
+        PrintWriter printWriter = new PrintWriter("input.dat");
+        //writes a nullable object to the PrintWriter
+        printWriter.print(assign4);
+        /**
+         * PrintWriter is closed
+         * When you are finished writing characters to the Java PrintWriter you should remember to close it.
+         * Closing a PrintWriter will also close the Writer instance to which the PrintWriter is writing.
+         **/
+        printWriter.close();
     }
 
     private static String whichAssignmentIsEarliest(Assignment assign1, Assignment assign2, Assignment assign3) {
