@@ -1,4 +1,5 @@
 import java.io.*;
+import java.sql.Array;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoUnit;
@@ -134,21 +135,49 @@ public class Main {
         // Write  [X] randomly generated assignments to the file 'input.dat'.
         writeRandomAssignments(userInputNum);
 
+//Read assignments from the file 'input.dat' and store them in an Assignment object.
+        System.out.println("Enter File to Look Up: ");
+        String userFileName = sc.nextLine();
+        readRandomAssignments(userFileName);
+    }
+
+
+    private static ArrayList<Assignment> readRandomAssignments(String userFileName) {
+        Scanner scanner = new Scanner(userFileName);
+        ArrayList<Assignment> assignmentArrayList = new ArrayList<>();
+        while(scanner.hasNextLine()){
+            String[] assignmentLine = scanner.nextLine().split("\t");
+            //parseIne converts a string into an integer
+            //create assignment class
+            Assignment newAssignment = new Assignment(Category.valueOf(assignmentLine[0]), Course.valueOf(assignmentLine[1]),
+                    Day.valueOf(assignmentLine[2]), LocalDateTime.parse(assignmentLine[3]), Integer.parseInt(assignmentLine[4]));
+            assignmentArrayList.add(newAssignment);
+        }
+        return assignmentArrayList;
     }
 
     private static void writeRandomAssignments(int userInput) throws IOException {
+        ArrayList<Course> course = courseEnumerated();
+        ArrayList<Category> category = categoryEnumerated();
+        ArrayList<Day> day = dayOfWeekEnumerated();
 
         //creates a PrintWriter instance which is connected to a FileWriter.
         PrintWriter printWriter = new PrintWriter("input.dat");
         for (int i = 0; i < userInput; i++) {
-            //5 = bounds
+            //randomly generate 3 integers used for rand indexes
+            int randNum1 = rand.nextInt(category.size());
+            int randNum2 = rand.nextInt(course.size());
+            int randNum3 = rand.nextInt(day.size());
+
+
+            //5 = bounds >> size of the list
             int randomNum = rand.nextInt(5);
             //generate random assignment
-            Assignment assignment = new Assignment(LocalDateTime.now(), randomNum);
+            //get rand element from list and pass it to the assignment constructor
+            Assignment assignment = new Assignment(category.get(randNum1), course.get(randNum2), day.get(randNum3), LocalDateTime.now(), randomNum);
             //writes a nullable object to the PrintWriter
             printWriter.print(assignment);
         }
-
         /**
          * PrintWriter is closed
          * When you are finished writing characters to the Java PrintWriter you should remember to close it.

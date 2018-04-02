@@ -74,7 +74,7 @@ public class Assignment {
 
     @Override
     public String toString() {
-        return category + "\n" + course + "\n" + day + "\n" + localDateTime + "\n" + priority;
+        return category + "\t" + course + "\t" + day + "\t" + localDateTime + "\t" + priority + "\n";
     }
 
 
